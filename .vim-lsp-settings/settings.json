@@ -1,0 +1,8 @@
+{
+	"clangd": {
+		"cmd": [
+			"clangd",
+			"-compile-commands-dir=./build"
+		]
+	}
+}
