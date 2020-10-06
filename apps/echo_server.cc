@@ -2,24 +2,25 @@
 #include "socket.hh"
 
 #include <iostream>
+#include <sys/signal.h>
 
 int main() {
-    Server app(3000);
+    constexpr uint port = 3000;
+    Server app(port);
 
-    const auto handler = [](TCPSocket sock) {
+    const auto handler = [](TCPSocket &&sock) {
         do {
             const auto &&content = sock.read();
-
-            std::cout << "[info]: get content: " << content << std::endl;
 
             sock.write(content, true);
         } while (not sock.eof());
 
-        std::cout << "[info]: connection closed" << std::endl;
+        spdlog::info("connection closed, fd = {}", sock.fd_num());
 
         sock.close();
     };
 
+    spdlog::info("start serve at {}", port);
     app.serve(handler);
     return 0;
 }
