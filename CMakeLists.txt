@@ -4,9 +4,9 @@ project (Netlabs)
 set (CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_subdirectory (third_party/fmt)
-
 add_subdirectory (third_party/spdlog)
+add_subdirectory (third_party/scnlib)
+add_subdirectory (third_party/docopt)
 
 include (etc/build_defs.cmake)
 include (etc/build_type.cmake)

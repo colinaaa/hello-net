@@ -4,3 +4,9 @@
 [submodule "third_party/spdlog"]
 	path = third_party/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "third_party/scnlib"]
+	path = third_party/scnlib
+	url = https://github.com/eliaskosunen/scnlib
+[submodule "third_party/docopt"]
+	path = third_party/docopt
+	url = https://github.com/docopt/docopt.cpp.git
