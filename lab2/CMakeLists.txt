@@ -18,3 +18,8 @@ file (GLOB StopWaitSRC ${PROJECT_SOURCE_DIR}/src/StopWait*.cc)
 
 add_executable (stop_wait ${StopWaitSRC})
 target_link_libraries (stop_wait ${NETSIM_LIB})
+
+file (GLOB SelectiveRepeatSRC ${PROJECT_SOURCE_DIR}/src/SR*.cc)
+
+add_executable (sr ${SelectiveRepeatSRC} ${PROJECT_SOURCE_DIR}/src/SelectiveRepeat.cc)
+target_link_libraries (sr ${NETSIM_LIB})
