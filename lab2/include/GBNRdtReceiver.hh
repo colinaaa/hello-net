@@ -4,11 +4,10 @@
 #include "RdtReceiver.h"
 
 #include <algorithm>
-#include <cstddef>
 
 class GBNRdtReceiver : public RdtReceiver {
   private:
-    size_t receiveNum;
+    std::size_t receiveNum;
 
     Packet lastAckPkt;  //上次发送的确认报文
 

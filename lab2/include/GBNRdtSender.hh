@@ -3,15 +3,14 @@
 
 #include "RdtSender.h"
 
-#include <cstddef>
 #include <unordered_map>
 
 class GBNRdtSender : public RdtSender {
   private:
-    size_t baseNum;
-    size_t endNum;
-    size_t seqNum;
-    std::unordered_map<size_t, Packet> cache;
+    std::size_t baseNum;
+    std::size_t endNum;
+    std::size_t seqNum;
+    std::unordered_map<std::size_t, Packet> cache;
 
   public:
     bool getWaitingState() final;
