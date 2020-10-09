@@ -96,3 +96,4 @@ _deps
 
 /build/
 /.clangd/
+.DS_Store
