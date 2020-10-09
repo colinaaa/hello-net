@@ -10,7 +10,7 @@ RUN rankmirrors -n 3 /tmp/mirrorlist > /etc/pacman.d/mirrorlist
 RUN pacman -Syu --noconfirm
 RUN pacman -S --noconfirm clang gcc cmake git make\
       tcpdump wireshark-cli socat openbsd-netcat\
-      doxygen graphviz man-db man-pages-zh_cn
+      doxygen graphviz man-db man-pages-zh_cn diffutils
 
 # clear cache
 RUN pacman -Scc --noconfirm
