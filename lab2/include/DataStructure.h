@@ -11,6 +11,11 @@ struct Configuration {
     定时器时间
     */
     static const int TIME_OUT = 20;
+
+    /**
+     * 窗口大小
+     */
+    static constexpr int WIN_SIZE = 10;
 };
 
 /**
