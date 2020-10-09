@@ -4,7 +4,7 @@
 #include "Global.h"
 
 #include <algorithm>
-#include <iostream>
+#include <spdlog/spdlog.h>
 
 bool GBNRdtSender::send(const Message &message) {
     if (not getWaitingState()) {
@@ -15,7 +15,7 @@ bool GBNRdtSender::send(const Message &message) {
 
         packet.checksum = pUtils->calculateCheckSum(packet);
 
-        cache.emplace(packet.seqnum, packet);
+        cache.emplace(static_cast<std::size_t>(packet.seqnum), packet);
 
         pns->startTimer(SENDER, Configuration::TIME_OUT, packet.seqnum);
         pns->sendToNetworkLayer(RECEIVER, packet);
@@ -51,11 +51,10 @@ void GBNRdtSender::receive(const Packet &packet) {
         pns->stopTimer(SENDER, i);
     }
 
-    std::cout << "滑动窗口移动: from [" << baseNum << ", " << endNum << ")";
+    spdlog::info("滑动窗口移动: from [{}, {}) to [{}, {})", baseNum, endNum, endNum + ack - baseNum + 1, ack + 1);
 
     endNum += ack - baseNum + 1;
     baseNum = ack + 1;
-    std::cout << " to：[" << baseNum << ", " << endNum << ")\n";
 }
 
 void GBNRdtSender::timeoutHandler(int seqNum) {

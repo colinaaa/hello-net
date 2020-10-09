@@ -4,7 +4,7 @@
 # outputname 输出文件名
 # resultname 程序控制台输出结果重定向文件名
 
-appname='build/gbn'
+appname=$1
 inputname='input.txt'
 outputname='output.txt'
 resultname='result.txt'

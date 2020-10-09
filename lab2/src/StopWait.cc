@@ -12,8 +12,8 @@
 namespace fs = std::filesystem;
 
 int main(int argc, char *argv[]) {
-    const auto input = fs::relative("../input.txt");
-    const auto output = fs::relative("../output.txt");
+    const auto input = fs::relative("./input.txt");
+    const auto output = fs::relative("./output.txt");
 
     RdtSender *ps = new StopWaitRdtSender();
     RdtReceiver *pr = new StopWaitRdtReceiver();

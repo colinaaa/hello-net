@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <spdlog/spdlog.h>
 
 void SRRdtReceiver::receive(const Packet &packet) {
     const auto seq = packet.seqnum;
@@ -39,8 +40,7 @@ void SRRdtReceiver::receive(const Packet &packet) {
         pUtils->printPacket("发送ACK", lastAckPkt);
         pns->sendToNetworkLayer(SENDER, lastAckPkt);
 
-        std::cout << "接收方滑动窗口移动: from [" << baseNum << ", " << endNum << ")";
-        std::cout << " to：[" << baseNum + 1 << ", " << endNum + 1 << ")\n";
+        spdlog::info("接收方滑动窗口移动: from [{}, {}) to [{}, {})", baseNum, endNum, baseNum + 1, endNum + 1);
     }
 
     return;

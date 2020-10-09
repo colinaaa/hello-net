@@ -4,7 +4,7 @@
 #include "Global.h"
 
 #include <algorithm>
-#include <iostream>
+#include <spdlog/spdlog.h>
 
 bool SRRdtSender::send(const Message &message) {
     if (not getWaitingState()) {
@@ -40,10 +40,10 @@ void SRRdtSender::receive(const Packet &packet) {
         pns->stopTimer(SENDER, i);
     }
 
-    std::cout << "发送方滑动窗口移动: from [" << baseNum << ", " << endNum << ")";
+    spdlog::info("发送方滑动窗口移动: from [{}, {}) to [{}, {})", baseNum, endNum, endNum + ack - baseNum + 1, ack + 1);
+
     endNum += ack - baseNum + 1;
     baseNum = ack + 1;
-    std::cout << " to：[" << baseNum << ", " << endNum << ")\n";
 }
 
 void SRRdtSender::timeoutHandler(int seqNum) {

@@ -10,8 +10,8 @@
 namespace fs = std::filesystem;
 
 int main(int argc, char *argv[]) {
-    const auto input = fs::absolute(fs::relative("../input.txt"));
-    const auto output = fs::absolute(fs::relative("../output.txt"));
+    const auto input = fs::absolute(fs::relative("./input.txt"));
+    const auto output = fs::absolute(fs::relative("./output.txt"));
 
     RdtSender *sender = new GBNRdtSender();
     RdtReceiver *receiver = new GBNRdtReceiver();
