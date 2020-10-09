@@ -37,7 +37,7 @@ void GBNRdtSender::receive(const Packet &packet) {
     const auto ack = packet.acknum;
     pns->stopTimer(SENDER, ack);
     if (ack < baseNum) {
-        for (int i = baseNum; i < endNum; i++) {
+        for (int i = baseNum; cache.count(i) != 0; i++) {
             pns->stopTimer(SENDER, i);
 
             const auto &packet = cache.at(i);
@@ -53,8 +53,8 @@ void GBNRdtSender::receive(const Packet &packet) {
 
     std::cout << "滑动窗口移动: from [" << baseNum << ", " << endNum << ")";
 
-    endNum += ack - baseNum;
-    baseNum = ack;
+    endNum += ack - baseNum + 1;
+    baseNum = ack + 1;
     std::cout << " to：[" << baseNum << ", " << endNum << ")\n";
 }
 

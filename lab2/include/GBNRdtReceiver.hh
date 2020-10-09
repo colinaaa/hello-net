@@ -15,7 +15,7 @@ class GBNRdtReceiver : public RdtReceiver {
   public:
     GBNRdtReceiver() : receiveNum(0), lastAckPkt() {
         lastAckPkt.acknum = -1;
-        std::fill_n(lastAckPkt.payload, sizeof(lastAckPkt.payload), 0);
+        std::fill_n(lastAckPkt.payload, sizeof(lastAckPkt.payload), 'x');
     }
     virtual ~GBNRdtReceiver() override {}
 
