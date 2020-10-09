@@ -1,5 +1,5 @@
-#ifndef GBN_RDT_SENDER_H
-#define GBN_RDT_SENDER_H
+#ifndef GBN_RDT_SENDER_HH
+#define GBN_RDT_SENDER_HH
 
 #include "RdtSender.h"
 
@@ -29,6 +29,6 @@ class GBNRdtSender : public RdtSender {
   public:
     GBNRdtSender() : baseNum(0), endNum(Configuration::WIN_SIZE), seqNum(0), cache() {}
     virtual ~GBNRdtSender() override {}
-};
+};  // class GBNRdtSender
 
-#endif
+#endif  // GBN_RDT_SENDER_HH

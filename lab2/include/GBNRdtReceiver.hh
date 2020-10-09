@@ -1,5 +1,5 @@
-#ifndef GBN_RDT_RECEIVER_H
-#define GBN_RDT_RECEIVER_H
+#ifndef GBN_RDT_RECEIVER_HH
+#define GBN_RDT_RECEIVER_HH
 
 #include "RdtReceiver.h"
 
@@ -19,7 +19,8 @@ class GBNRdtReceiver : public RdtReceiver {
     virtual ~GBNRdtReceiver() override {}
 
   public:
-    void receive(const Packet &packet) final;  //接收报文，将被NetworkService调用
-};
+    //接收报文，将被NetworkService调用
+    void receive(const Packet &packet) final;
+};  // class GBNRdtReceiver
 
-#endif  // GBN_RDT_RECEIVER_H
+#endif  // GBN_RDT_RECEIVER_HH
