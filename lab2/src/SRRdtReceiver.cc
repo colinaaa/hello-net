@@ -19,7 +19,6 @@ void SRRdtReceiver::receive(const Packet &packet) {
     cache.emplace(seq, packet);
 
     if (seq != baseNum) {
-        // std::cout << seq << ' ' << baseNum << std::endl;
         pUtils->printPacket("非最小报文", packet);
         pns->sendToNetworkLayer(SENDER, lastAckPkt);
         return;
@@ -37,7 +36,7 @@ void SRRdtReceiver::receive(const Packet &packet) {
         spdlog::info("接收方滑动窗口移动: from [{}, {}) to [{}, {})", baseNum, endNum, baseNum + 1, endNum + 1);
     }
 
-    lastAckPkt.acknum = baseNum;
+    lastAckPkt.acknum = baseNum - 1;
     lastAckPkt.seqnum = -1;
     lastAckPkt.checksum = pUtils->calculateCheckSum(lastAckPkt);
 
