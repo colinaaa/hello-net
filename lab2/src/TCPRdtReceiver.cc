@@ -1,4 +1,4 @@
-#include "SRRdtReceiver.hh"
+#include "TCPRdtReceiver.hh"
 
 #include "Global.h"
 
@@ -6,7 +6,7 @@
 #include <iostream>
 #include <spdlog/spdlog.h>
 
-void SRRdtReceiver::receive(const Packet &packet) {
+void TCPRdtReceiver::receive(const Packet &packet) {
     const auto seq = packet.seqnum;
     const auto checksum = pUtils->calculateCheckSum(packet);
 
@@ -19,7 +19,6 @@ void SRRdtReceiver::receive(const Packet &packet) {
     cache.emplace(seq, packet);
 
     if (seq != baseNum) {
-        // std::cout << seq << ' ' << baseNum << std::endl;
         pUtils->printPacket("非最小报文", packet);
         pns->sendToNetworkLayer(SENDER, lastAckPkt);
         return;
@@ -32,6 +31,7 @@ void SRRdtReceiver::receive(const Packet &packet) {
         std::copy_n(p.payload, sizeof(p.payload), msg.data);
 
         pns->delivertoAppLayer(RECEIVER, msg);
+
         cache.erase(baseNum);
 
         spdlog::info("接收方滑动窗口移动: from [{}, {}) to [{}, {})", baseNum, endNum, baseNum + 1, endNum + 1);

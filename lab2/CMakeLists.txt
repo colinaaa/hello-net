@@ -14,13 +14,16 @@ include_directories (${PROJECT_SOURCE_DIR}/include)
 file (GLOB StopWaitSRC ${PROJECT_SOURCE_DIR}/src/StopWait*.cc)
 file (GLOB GoBackNSRC ${PROJECT_SOURCE_DIR}/src/GBN*.cc)
 file (GLOB SelectiveRepeatSRC ${PROJECT_SOURCE_DIR}/src/SR*.cc)
+file (GLOB TCPSRC ${PROJECT_SOURCE_DIR}/src/TCP*.cc)
 
 find_library (NETSIM_LIB libnetsim.a ${PROJECT_SOURCE_DIR}/lib)
 
 add_executable (stop_wait ${StopWaitSRC})
 add_executable (gbn ${GoBackNSRC} ${PROJECT_SOURCE_DIR}/src/GoBackN.cc)
 add_executable (sr ${SelectiveRepeatSRC} ${PROJECT_SOURCE_DIR}/src/SelectiveRepeat.cc)
+add_executable (tcp ${TCPSRC})
 
 target_link_libraries (sr ${NETSIM_LIB} spdlog::spdlog)
 target_link_libraries (stop_wait ${NETSIM_LIB} spdlog::spdlog)
 target_link_libraries (gbn ${NETSIM_LIB} spdlog::spdlog)
+target_link_libraries (tcp ${NETSIM_LIB} spdlog::spdlog)

@@ -1,14 +1,16 @@
 SHELL:=/bin/bash
 BUILD:=build
-TARGETS:=stop_wait gbn sr
+TARGETS:=stop_wait gbn sr tcp
 
 all-tests:=$(addprefix test-, $(TARGETS))
 all-targets:=$(addprefix $(BUILD)/, $(TARGETS))
 
-all: $(all-targets) $(all-test)
+all: $(all-targets)
 
 clean: $(BUILD)
-	$(MAKE) -C $<
+	$(MAKE) -C $< $@
+	
+.PHONY: all clean test
 
 $(BUILD):
 	mkdir $@

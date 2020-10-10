@@ -40,7 +40,7 @@ void SRRdtSender::receive(const Packet &packet) {
         pns->stopTimer(SENDER, i);
     }
 
-    spdlog::info("发送方滑动窗口移动: from [{}, {}) to [{}, {})", baseNum, endNum, endNum + ack - baseNum + 1, ack + 1);
+    spdlog::info("发送方滑动窗口移动: from [{}, {}) to [{}, {})", baseNum, endNum, ack + 1, endNum + ack - baseNum + 1);
 
     endNum += ack - baseNum + 1;
     baseNum = ack + 1;

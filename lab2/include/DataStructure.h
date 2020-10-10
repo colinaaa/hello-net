@@ -15,7 +15,7 @@ struct Configuration {
     /**
      * 窗口大小
      */
-    static constexpr int WIN_SIZE = 100;
+    static constexpr int WIN_SIZE = 10;
 };
 
 /**
